@@ -69,14 +69,14 @@ class UFMicroFormat2Parser {
             return true;
         }
         if ($tag === 'a' or $tag === 'img') {
-            /* <a> tag needs at least one of u-* classes*/
+            /* <a> tag needs at least one of u-* classes or p-org org p-category*/
             /* <a> is ok for h-card */
             /* <img> tag needs at least one of u-* classes*/
             foreach($classes as $class) {
                 if (strpos($class, 'u-') === 0) {
                     return true;
                 }
-                if (($class === 'h-card') && ($tag === 'a')) {
+                if (in_array($class, ['h-card', 'p-org', 'p-category']) && ($tag === 'a')) {
                     return true;
                 }
             }
